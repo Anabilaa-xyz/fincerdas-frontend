@@ -1,0 +1,219 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* PAGE */
+
+.hasil-page {
+  min-height: 100vh;
+
+  background: #f3f3f3;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 30px;
+}
+
+/* CARD */
+
+.hasil-card {
+  width: 100%;
+  max-width: 850px;
+
+  background: white;
+
+  padding: 50px;
+
+  border-radius: 24px;
+
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+/* TITLE */
+
+.hasil-card h1 {
+  font-size: 48px;
+
+  color: #557f5a;
+
+  margin-bottom: 15px;
+}
+
+/* SUBTITLE */
+
+.subtitle {
+  font-size: 18px;
+
+  color: #666;
+
+  line-height: 1.6;
+
+  margin-bottom: 40px;
+}
+
+/* RISK BOX */
+
+.risk-box {
+  background: #f6f9f7;
+
+  padding: 35px;
+
+  border-radius: 20px;
+
+  text-align: center;
+
+  margin-bottom: 30px;
+}
+
+/* TITLE */
+
+.risk-box h2 {
+  font-size: 32px;
+
+  color: #444;
+
+  margin-bottom: 20px;
+}
+
+/* PERCENT */
+
+.risk-percent {
+  font-size: 72px;
+
+  font-weight: bold;
+
+  color: #ff6b57;
+
+  margin-bottom: 20px;
+}
+
+/* PROGRESS */
+
+.progress-bar {
+  width: 100%;
+  height: 18px;
+
+  background: #ddd;
+
+  border-radius: 20px;
+
+  overflow: hidden;
+
+  margin-bottom: 20px;
+}
+
+.progress-fill {
+  width: 80%;
+  height: 100%;
+
+  background: #ff6b57;
+}
+
+/* STATUS */
+
+.risk-status {
+  font-size: 20px;
+
+  font-weight: bold;
+
+  color: #ff6b57;
+}
+
+/* INSIGHT */
+
+.insight-box,
+.recommendation-box {
+  margin-top: 25px;
+
+  background: #f8f8f8;
+
+  padding: 30px;
+
+  border-radius: 18px;
+}
+
+/* TITLE */
+
+.insight-box h3,
+.recommendation-box h3 {
+  font-size: 28px;
+
+  margin-bottom: 20px;
+
+  color: #557f5a;
+}
+
+/* LIST */
+
+.insight-box ul {
+  padding-left: 20px;
+}
+
+.insight-box li {
+  margin-bottom: 12px;
+
+  font-size: 17px;
+
+  color: #555;
+}
+
+/* TEXT */
+
+.recommendation-box p {
+  font-size: 18px;
+
+  line-height: 1.7;
+
+  color: #555;
+}
+
+/* BUTTON */
+
+.back-btn {
+  margin-top: 35px;
+
+  width: 100%;
+
+  padding: 18px;
+
+  border: none;
+
+  border-radius: 14px;
+
+  background: #42c46f;
+
+  color: white;
+
+  font-size: 20px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.back-btn:hover {
+  background: #2ea75a;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+
+  .hasil-card {
+    padding: 30px;
+  }
+
+  .hasil-card h1 {
+    font-size: 36px;
+  }
+
+  .risk-percent {
+    font-size: 52px;
+  }
+
+}
