@@ -1,0 +1,148 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* PAGE */
+
+.input-page {
+  min-height: 100vh;
+
+  background: #f3f3f3;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 30px;
+}
+
+/* CARD */
+
+.input-card {
+  width: 100%;
+  max-width: 700px;
+
+  background: white;
+
+  padding: 50px;
+
+  border-radius: 24px;
+
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+/* TITLE */
+
+.input-card h1 {
+  font-size: 42px;
+
+  color: #557f5a;
+
+  margin-bottom: 20px;
+}
+
+/* TEXT */
+
+.input-card p {
+  font-size: 18px;
+
+  color: #666;
+
+  line-height: 1.6;
+
+  margin-bottom: 35px;
+}
+
+/* FORM */
+
+.input-form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* GROUP */
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+/* LABEL */
+
+.form-group label {
+  font-size: 18px;
+
+  font-weight: bold;
+
+  margin-bottom: 10px;
+
+  color: #444;
+}
+
+/* INPUT */
+
+.form-group input,
+.form-group select {
+  padding: 16px;
+
+  border: 1px solid #ccc;
+
+  border-radius: 12px;
+
+  font-size: 16px;
+
+  outline: none;
+}
+
+/* FOCUS */
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #42c46f;
+}
+
+/* BUTTON */
+
+.analyze-btn {
+  margin-top: 20px;
+
+  padding: 18px;
+
+  border: none;
+
+  border-radius: 14px;
+
+  background: #42c46f;
+
+  color: white;
+
+  font-size: 20px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+/* HOVER */
+
+.analyze-btn:hover {
+  background: #2fa55a;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+
+  .input-card {
+    padding: 30px;
+  }
+
+  .input-card h1 {
+    font-size: 32px;
+  }
+
+}
