@@ -3,6 +3,7 @@ const cors = require('cors');
 require('dotenv').config();
 
 const predictionRoutes = require('./routes/prediction.routes');
+const authRoutes = require('./routes/auth.routes'); 
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.get('/health', (req, res) => {
   });
 });
 
+app.use('/api/auth', authRoutes);  
 app.use('/api', predictionRoutes);
 
 app.listen(PORT, () => {
