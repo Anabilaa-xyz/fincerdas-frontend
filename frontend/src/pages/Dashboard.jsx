@@ -37,7 +37,7 @@ function Dashboard() {
               <li className="active-menu"><Home size={16}/>Beranda</li>
               <li onClick={() => navigate("/input-data")}><FileText size={16}/>Input Data</li>
               <li onClick={() => navigate("/hasil-analisis")}><PieChart size={16}/>Hasil Analisis</li>
-              <li><Lightbulb size={16}/>Rekomendasi</li>
+            <li onClick={() => navigate("/rekomendasi")}><Lightbulb size={16}/>Rekomendasi</li>
             </ul>
           </div>
 

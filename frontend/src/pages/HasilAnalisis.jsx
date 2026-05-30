@@ -131,7 +131,8 @@ function HasilAnalisis() {
             <p>Jangan khawatir! Risiko tinggi bisa diturunkan dengan langkah-langkah yang tepat. Mulai perubahan kecil hari ini untuk hasil yang lebih baik.</p>
           </div>
           <div className="next-steps-actions">
-            <button className="btn-next-primary">
+            {/* ← FIX: tambah onClick navigate ke /rekomendasi */}
+            <button className="btn-next-primary" onClick={() => navigate("/rekomendasi")}>
               📋 Lihat Rencana Aksi
             </button>
             <button className="btn-next-secondary" onClick={() => navigate("/dashboard")}>

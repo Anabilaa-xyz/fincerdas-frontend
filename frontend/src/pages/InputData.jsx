@@ -36,7 +36,7 @@ function InputData() {
               <li onClick={() => navigate("/dashboard")}><Home size={16}/>Beranda</li>
               <li className="active-menu"><FileText size={16}/>Input Data</li>
               <li><PieChart size={16}/>Hasil Analisis</li>
-              <li><Lightbulb size={16}/>Rekomendasi</li>
+              <li onClick={() => navigate("/rekomendasi")}><Lightbulb size={16}/>Rekomendasi</li>
             </ul>
           </div>
           <div>
