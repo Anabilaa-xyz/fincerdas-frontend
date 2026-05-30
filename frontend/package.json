@@ -3,8 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://deviiaulya.github.io/ProjectFintech",
-  "scripts": {
+  "homepage": "https://Anabilaa-xyz.github.io/fincerdas-frontend",  "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",

@@ -2,11 +2,18 @@ import "../styles/Dashboard.css";
 import { useNavigate } from "react-router-dom";
 import {
   Home, FileText, PieChart, Lightbulb,
-  Shield, Cpu, DollarSign, TrendingUp, Rocket,
+  Shield, Cpu, DollarSign, TrendingUp, Rocket, LogOut,
 } from "lucide-react";
+import { useAuth } from "../context/AuthContext";
 
 function Dashboard() {
   const navigate = useNavigate();
+  const { user, logout } = useAuth();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
 
   return (
     <div className="dashboard-page">
@@ -23,6 +30,34 @@ function Dashboard() {
           <span className="badge badge-ml"><Cpu size={14}/> Machine Learning</span>
           <span className="badge badge-secure"><Shield size={14}/> Data Aman</span>
           <span className="badge badge-free"><DollarSign size={14}/> Gratis</span>
+
+          {/* Nama user */}
+          {user && (
+            <span style={{
+              fontSize: '0.82rem', fontWeight: 600, color: '#374151',
+              background: '#f0fdf4', border: '1px solid #bbf7d0',
+              borderRadius: 20, padding: '4px 12px'
+            }}>
+              👤 {user.name}
+            </span>
+          )}
+
+          {/* Tombol Logout */}
+          <button
+            onClick={handleLogout}
+            style={{
+              display: 'flex', alignItems: 'center', gap: 6,
+              background: '#fef2f2', color: '#b91c1c',
+              border: '1px solid #fecaca', borderRadius: 8,
+              padding: '7px 14px', fontWeight: 700,
+              cursor: 'pointer', fontFamily: 'inherit', fontSize: '0.82rem',
+              transition: 'background .2s'
+            }}
+            onMouseOver={e => e.currentTarget.style.background = '#fee2e2'}
+            onMouseOut={e => e.currentTarget.style.background = '#fef2f2'}
+          >
+            <LogOut size={14}/> Keluar
+          </button>
         </div>
       </header>
 
@@ -37,7 +72,7 @@ function Dashboard() {
               <li className="active-menu"><Home size={16}/>Beranda</li>
               <li onClick={() => navigate("/input-data")}><FileText size={16}/>Input Data</li>
               <li onClick={() => navigate("/hasil-analisis")}><PieChart size={16}/>Hasil Analisis</li>
-            <li onClick={() => navigate("/rekomendasi")}><Lightbulb size={16}/>Rekomendasi</li>
+              <li onClick={() => navigate("/rekomendasi")}><Lightbulb size={16}/>Rekomendasi</li>
             </ul>
           </div>
 
