@@ -1,8 +1,9 @@
 const express = require('express');
-const { predictRisk } = require('../controllers/prediction.controller');
+const { getProfile } = require('../controllers/user.controller');
 const { authenticateToken } = require('../middleware/auth.middleware');
+
 const router = express.Router();
 
-router.post('/predict', authenticateToken, predictRisk);
+router.get('/profile', authenticateToken, getProfile);
 
 module.exports = router;
