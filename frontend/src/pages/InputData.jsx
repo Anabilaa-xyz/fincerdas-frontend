@@ -114,23 +114,37 @@ function InputData() {
                   <input type="text" placeholder="Rp"/>
                 </div>
               </div>
+
+              {/* ✅ TAMBAHAN BARU */}
+              <div className="double-input">
+                <div className="form-group">
+                  <label>Jumlah Pembayaran Bulan Lalu</label>
+                  <input type="text" placeholder="Rp"/>
+                </div>
+                <div className="form-group">
+                  <label>Jumlah Pembayaran 2 Bulan Lalu</label>
+                  <input type="text" placeholder="Rp"/>
+                </div>
+              </div>
+
             </div>
 
             {/* RIGHT CARD */}
             <div className="form-card">
               <h2>Riwayat Pembayaran</h2>
 
-              {["Bulan 1","Bulan 2","Bulan 3","Bulan 4","Bulan 5","Bulan 6"].map((bln, i) => (
+              {/* ✅ DIPOTONG jadi 3 bulan saja */}
+              {["Bulan 1","Bulan 2","Bulan 3"].map((bln, i) => (
                 <div className="form-group" key={i}>
                   <label>{bln}</label>
                   <div className="select-wrapper">
                     <select defaultValue="">
                       <option value="" disabled>Pilih status pembayaran</option>
-                      <option value="0">✅ Bayar Penuh</option>
-                      <option value="-1">💛 Bayar Minimum</option>
-                      <option value="1">❌ Terlambat 1 Bulan</option>
-                      <option value="2">🔴 Terlambat 2 Bulan</option>
-                      <option value="3">⛔ Terlambat 3+ Bulan</option>
+                      <option value="0">Bayar Penuh</option>
+                      <option value="-1">Bayar Minimum</option>
+                      <option value="1">Terlambat 1 Bulan</option>
+                      <option value="2">Terlambat 2 Bulan</option>
+                      <option value="3">Terlambat 3+ Bulan</option>
                     </select>
                   </div>
                 </div>

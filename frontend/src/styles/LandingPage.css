@@ -185,24 +185,23 @@
 }
 
 .hero-left h1 {
-  font-size: 58px;
-  line-height: 1.15;
-  letter-spacing: -2px;
+  font-size: 48px;
+  line-height: 1.2;
+  letter-spacing: -1.5px;
   margin-bottom: 24px;
   color: var(--gray-900);
-  /* Pastikan kata tidak terpotong aneh */
   word-break: keep-all;
   overflow-wrap: break-word;
+  white-space: normal;
+  max-width: 100%;
 }
 
 .hero-left h1 .highlight {
   color: var(--green-primary);
   position: relative;
-  /* Ganti display:inline-block → inline agar tidak bikin baris patah sendiri */
   display: inline;
-  white-space: nowrap;
+  white-space: normal;
 }
-
 .hero-left h1 .highlight::after {
   content: '';
   position: absolute;
@@ -781,4 +780,11 @@
   .credit-photos-section { padding: 60px 24px; }
   .photos-row { grid-template-columns: 1fr; }
   .section-header h2 { font-size: 32px; }
+  
+}
+@media (max-width: 480px) {
+  .hero-left h1 {
+    font-size: 28px;
+    letter-spacing: -0.5px;
+  }
 }

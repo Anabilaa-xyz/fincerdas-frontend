@@ -20,7 +20,7 @@ export default function Login() {
     setForm(p => ({ ...p, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!form.email || !form.password) {
       setError('Email dan password wajib diisi.');
@@ -28,10 +28,10 @@ export default function Login() {
     }
     setLoading(true);
     try {
-      login({ email: form.email, password: form.password });
+      await login({ email: form.email, password: form.password });
       navigate(from, { replace: true });
     } catch (err) {
-      setError(err.message);
+      setError(err.response?.data?.message || err.message || 'Login gagal.');
     } finally {
       setLoading(false);
     }
@@ -50,7 +50,7 @@ export default function Login() {
           <span className="auth-logo-text">Fin<span>Cerdas</span></span>
         </div>
 
-        <h1 className="auth-title">Selamat Datang Kembali</h1>
+        <h1 className="auth-title">Selamat Datang Kembali 👋</h1>
         <p className="auth-subtitle">
           Masuk ke akun kamu untuk menganalisis kondisi keuangan.
         </p>
@@ -63,14 +63,10 @@ export default function Login() {
             <label className="auth-label">Email</label>
             <div className="auth-input-wrap">
               <span className="auth-input-icon">✉️</span>
-              <input
-                name="email" type="email"
+              <input name="email" type="email"
                 className="auth-input"
                 placeholder="nama@email.com"
-                value={form.email}
-                onChange={handleChange}
-                autoFocus
-              />
+                value={form.email} onChange={handleChange} autoFocus />
             </div>
           </div>
 
@@ -78,14 +74,11 @@ export default function Login() {
             <label className="auth-label">Password</label>
             <div className="auth-input-wrap">
               <span className="auth-input-icon">🔒</span>
-              <input
-                name="password"
+              <input name="password"
                 type={showPass ? 'text' : 'password'}
                 className="auth-input"
                 placeholder="Masukkan password"
-                value={form.password}
-                onChange={handleChange}
-              />
+                value={form.password} onChange={handleChange} />
               <button type="button" className="auth-eye"
                 onClick={() => setShowPass(p => !p)}>
                 {showPass ? '🙈' : '👁️'}
@@ -96,7 +89,7 @@ export default function Login() {
           <button className="auth-btn" type="submit" disabled={loading}>
             {loading
               ? <><div className="btn-spinner" /> Memproses...</>
-              : <> Masuk</>
+              : <>🚀 Masuk</>
             }
           </button>
         </form>
@@ -105,8 +98,6 @@ export default function Login() {
           Belum punya akun?{' '}
           <span onClick={() => navigate('/register')}>Daftar sekarang</span>
         </p>
-
-
       </div>
     </div>
   );

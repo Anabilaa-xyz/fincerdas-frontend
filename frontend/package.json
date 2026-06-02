@@ -3,7 +3,8 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://Anabilaa-xyz.github.io/fincerdas-frontend",  "scripts": {
+  "homepage": "https://Anabilaa-xyz.github.io/fincerdas-frontend",
+  "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
@@ -12,6 +13,7 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "axios": "^1.16.1",
     "lucide-react": "^1.16.0",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",

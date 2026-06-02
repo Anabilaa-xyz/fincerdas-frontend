@@ -100,7 +100,7 @@ function HasilAnalisis() {
           </div>
         </div>
 
-        {/* INSIGHT + RECOMMENDATION */}
+    
         <div className="cards-row">
           <div className="insight-box">
             <h3>🔍 Insight Analisis</h3>
@@ -115,11 +115,11 @@ function HasilAnalisis() {
           <div className="recommendation-box">
             <h3>💡 Rekomendasi Keuangan</h3>
             <ul className="rec-list">
-              <li><span>✂️</span> Kurangi penggunaan kartu kredit maksimal 30% dari limit.</li>
-              <li><span>📅</span> Prioritaskan bayar tagihan sebelum jatuh tempo.</li>
-              <li><span>💰</span> Buat dana darurat minimal 3x pengeluaran bulanan.</li>
-              <li><span>📊</span> Evaluasi pengeluaran rutin yang bisa dikurangi.</li>
-              <li><span>🤝</span> Pertimbangkan konsultasi dengan perencana keuangan.</li>
+              <li><span></span> Kurangi penggunaan kartu kredit maksimal 30% dari limit.</li>
+              <li><span></span> Prioritaskan bayar tagihan sebelum jatuh tempo.</li>
+              <li><span></span> Buat dana darurat minimal 3x pengeluaran bulanan.</li>
+              <li><span></span> Evaluasi pengeluaran rutin yang bisa dikurangi.</li>
+              <li><span></span> Pertimbangkan konsultasi dengan perencana keuangan.</li>
             </ul>
           </div>
         </div>
@@ -133,7 +133,7 @@ function HasilAnalisis() {
           <div className="next-steps-actions">
             {/* ← FIX: tambah onClick navigate ke /rekomendasi */}
             <button className="btn-next-primary" onClick={() => navigate("/rekomendasi")}>
-              📋 Lihat Rencana Aksi
+              📋 Lihat Selengkapnya
             </button>
             <button className="btn-next-secondary" onClick={() => navigate("/dashboard")}>
               🏠 Kembali ke Dashboard

@@ -5,8 +5,8 @@ import '../styles/Auth.css';
 
 function getStrength(pw) {
   let s = 0;
-  if (pw.length >= 6)           s++;
-  if (pw.length >= 10)          s++;
+  if (pw.length >= 8)           s++;
+  if (pw.length >= 12)          s++;
   if (/[A-Z]/.test(pw))         s++;
   if (/[0-9]/.test(pw))         s++;
   if (/[^A-Za-z0-9]/.test(pw))  s++;
@@ -17,14 +17,17 @@ const S_COLOR = ['','#ef4444','#f97316','#eab308','#22c55e','#16a34a'];
 const S_WIDTH = ['0%','20%','40%','60%','80%','100%'];
 
 export default function Register() {
-  const navigate       = useNavigate();
-  const { register }   = useAuth();
+  const navigate     = useNavigate();
+  const { register } = useAuth();
 
-  const [form, setForm]           = useState({ name:'', email:'', password:'', confirm:'' });
-  const [showPass, setShowPass]   = useState(false);
-  const [loading, setLoading]     = useState(false);
-  const [error, setError]         = useState('');
-  const [fieldErr, setFieldErr]   = useState({});
+  const [form, setForm] = useState({
+    fullname: '', email: '', password: '', confirm: '',
+    sex: '', education: '', marriage: '', age: '',
+  });
+  const [showPass, setShowPass] = useState(false);
+  const [loading, setLoading]   = useState(false);
+  const [error, setError]       = useState('');
+  const [fieldErr, setFieldErr] = useState({});
 
   const strength = getStrength(form.password);
 
@@ -36,25 +39,41 @@ export default function Register() {
 
   const validate = () => {
     const e = {};
-    if (!form.name.trim())   e.name = 'Nama wajib diisi.';
-    if (!form.email)         e.email = 'Email wajib diisi.';
+    if (!form.fullname.trim())  e.fullname  = 'Nama wajib diisi.';
+    if (!form.email)            e.email     = 'Email wajib diisi.';
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
-                             e.email = 'Format email tidak valid.';
-    if (form.password.length < 6) e.password = 'Password minimal 6 karakter.';
+                                e.email     = 'Format email tidak valid.';
+    if (form.password.length < 8) e.password = 'Password minimal 8 karakter.';
     if (form.password !== form.confirm) e.confirm = 'Password tidak cocok.';
+    if (!form.sex)              e.sex       = 'Jenis kelamin wajib dipilih.';
+    if (!form.education)        e.education = 'Pendidikan wajib dipilih.';
+    if (!form.marriage)         e.marriage  = 'Status pernikahan wajib dipilih.';
+    if (!form.age)              e.age       = 'Usia wajib diisi.';
+    else if (Number(form.age) < 18 || Number(form.age) > 100)
+                                e.age       = 'Usia harus antara 18–100.';
     return e;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const errs = validate();
     if (Object.keys(errs).length) { setFieldErr(errs); return; }
+
     setLoading(true);
+    setError('');
     try {
-      register({ name: form.name, email: form.email, password: form.password });
+      await register({
+        fullname:  form.fullname.trim(),
+        email:     form.email,
+        password:  form.password,
+        sex:       form.sex,
+        education: form.education,
+        marriage:  form.marriage,
+        age:       form.age,
+      });
       navigate('/dashboard', { replace: true });
     } catch (err) {
-      setError(err.message);
+      setError(err.response?.data?.message || err.message || 'Registrasi gagal.');
     } finally {
       setLoading(false);
     }
@@ -73,10 +92,8 @@ export default function Register() {
           <span className="auth-logo-text">Fin<span>Cerdas</span></span>
         </div>
 
-        <h1 className="auth-title">Buat Akun Baru </h1>
-        <p className="auth-subtitle">
-          Daftar gratis dan mulai cek kondisi keuanganmu.
-        </p>
+        <h1 className="auth-title">Buat Akun Baru ✨</h1>
+        <p className="auth-subtitle">Daftar gratis dan mulai cek kondisi keuanganmu.</p>
 
         {error && <div className="auth-alert error">⚠️ {error}</div>}
 
@@ -87,12 +104,12 @@ export default function Register() {
             <label className="auth-label">Nama Lengkap</label>
             <div className="auth-input-wrap">
               <span className="auth-input-icon">👤</span>
-              <input name="name" type="text"
-                className={`auth-input ${fieldErr.name ? 'error' : ''}`}
-                placeholder="Nama kamu"
-                value={form.name} onChange={handleChange} autoFocus />
+              <input name="fullname" type="text"
+                className={`auth-input ${fieldErr.fullname ? 'error' : ''}`}
+                placeholder="Nama lengkap kamu"
+                value={form.fullname} onChange={handleChange} autoFocus />
             </div>
-            {fieldErr.name && <span className="field-error">⚠ {fieldErr.name}</span>}
+            {fieldErr.fullname && <span className="field-error">⚠ {fieldErr.fullname}</span>}
           </div>
 
           {/* Email */}
@@ -116,7 +133,7 @@ export default function Register() {
               <input name="password"
                 type={showPass ? 'text' : 'password'}
                 className={`auth-input ${fieldErr.password ? 'error' : ''}`}
-                placeholder="Minimal 6 karakter"
+                placeholder="Minimal 8 karakter"
                 value={form.password} onChange={handleChange} />
               <button type="button" className="auth-eye"
                 onClick={() => setShowPass(p => !p)}>
@@ -137,7 +154,7 @@ export default function Register() {
             )}
           </div>
 
-          {/* Konfirmasi */}
+          {/* Konfirmasi Password */}
           <div className="auth-field">
             <label className="auth-label">Konfirmasi Password</label>
             <div className="auth-input-wrap">
@@ -151,10 +168,81 @@ export default function Register() {
             {fieldErr.confirm && <span className="field-error">⚠ {fieldErr.confirm}</span>}
           </div>
 
+          {/* Garis pemisah */}
+          <div style={{ borderTop: '1px solid #e5e7eb', margin: '4px 0' }} />
+          <p style={{ fontSize: '0.8rem', fontWeight: 700, color: '#374151' }}>
+            📋 Data Demografis
+          </p>
+
+          {/* Jenis Kelamin */}
+          <div className="auth-field">
+            <label className="auth-label">Jenis Kelamin</label>
+            <div className="auth-input-wrap">
+              <span className="auth-input-icon">⚧</span>
+              <select name="sex"
+                className={`auth-input ${fieldErr.sex ? 'error' : ''}`}
+                value={form.sex} onChange={handleChange}>
+                <option value="">-- Pilih --</option>
+                <option value="1">Laki-laki</option>
+                <option value="2">Perempuan</option>
+              </select>
+            </div>
+            {fieldErr.sex && <span className="field-error">⚠ {fieldErr.sex}</span>}
+          </div>
+
+          {/* Pendidikan */}
+          <div className="auth-field">
+            <label className="auth-label">Pendidikan Terakhir</label>
+            <div className="auth-input-wrap">
+              <span className="auth-input-icon">🎓</span>
+              <select name="education"
+                className={`auth-input ${fieldErr.education ? 'error' : ''}`}
+                value={form.education} onChange={handleChange}>
+                <option value="">-- Pilih --</option>
+                <option value="1">Pascasarjana (S2/S3)</option>
+                <option value="2">Universitas (S1/D3)</option>
+                <option value="3">SMA / Sederajat</option>
+                <option value="4">Lainnya</option>
+              </select>
+            </div>
+            {fieldErr.education && <span className="field-error">⚠ {fieldErr.education}</span>}
+          </div>
+
+          {/* Status Pernikahan */}
+          <div className="auth-field">
+            <label className="auth-label">Status Pernikahan</label>
+            <div className="auth-input-wrap">
+              <span className="auth-input-icon">💍</span>
+              <select name="marriage"
+                className={`auth-input ${fieldErr.marriage ? 'error' : ''}`}
+                value={form.marriage} onChange={handleChange}>
+                <option value="">-- Pilih --</option>
+                <option value="1">Menikah</option>
+                <option value="2">Lajang</option>
+                <option value="3">Lainnya</option>
+              </select>
+            </div>
+            {fieldErr.marriage && <span className="field-error">⚠ {fieldErr.marriage}</span>}
+          </div>
+
+          {/* Usia */}
+          <div className="auth-field">
+            <label className="auth-label">Usia</label>
+            <div className="auth-input-wrap">
+              <span className="auth-input-icon">🎂</span>
+              <input name="age" type="number"
+                className={`auth-input ${fieldErr.age ? 'error' : ''}`}
+                placeholder="Contoh: 25"
+                min="18" max="100"
+                value={form.age} onChange={handleChange} />
+            </div>
+            {fieldErr.age && <span className="field-error">⚠ {fieldErr.age}</span>}
+          </div>
+
           <button className="auth-btn" type="submit" disabled={loading}>
             {loading
               ? <><div className="btn-spinner" /> Mendaftarkan...</>
-              : <> Daftar Sekarang</>
+              : <>🎉 Daftar Sekarang</>
             }
           </button>
         </form>
